@@ -1,8 +1,8 @@
 ---
 title: hexo博客搭建和文件删除备份
 date: 2024-10-14 14:30:31
-tags: Blog
-- 
+tags: 
+- Blog
 categories:
 - Blog
 ---
@@ -19,12 +19,58 @@ categories:
 
 
 
-### 后续应对方式
+### 备份
 
-​		为了防止再次出现博客文件丢失的惨痛局面，有个备份的小技巧，如下。
+​		为了防止再次出现博客文件丢失的惨痛局面，有个备份的小技巧，如下（参考了[文章](https://wangjintian.com/2020/12/08/hexo%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD/)）。
+
+1. 安装备份插件
+
+   ```
+   $ npm install hexo-git-backup@0.0.91 --save  //Hexo version = 2.x.x
+   $ npm install hexo-git-backup --save  //Hexo version > 3.x.x
+   ```
+
+2. 到 Hexo 博客根目录的 `_config.yml` 配置文件里添加以下配置：(我使用了fluid主题，所以需要在`_config.fluid.yml`中同步配置)。
+
+   ```
+   backup:
+     type: git
+     theme: fluid
+     message: Back up my blog
+     repository:
+       github: git@github.com:coneycode/hexo-git-backup.git,hexo
+   ```
+
+   参数解释：
+
+   theme：你要备份的主题名称
+
+   message：自定义提交信息
+
+   repository：仓库名，注意仓库地址后面要添加一个分支名，比如我创建了一个 hexo 分支
+
+3. 在github仓库新建分支，分支名与上述配置对应
+
+4. 此时github仓库中应存在 master(或main)和hexo ，在提交的时候只需在 master 中使用以下命令备份你的博客即可：
+
+   ```
+   $ hexo backup
+   ```
+
+   或者使用以下简写命令也可以：
+
+   ```
+   $ hexo b
+   ```
 
 
 
 ### 后续
 
 ​		后面会继续阅读utterances的官网，看看有没有好用的功能，把自己的博客丰富起来。
+
+
+
+### 参考文章
+
+- [1] [hexo博客备份](https://wangjintian.com/2020/12/08/hexo%E5%8D%9A%E5%AE%A2%E5%A4%87%E4%BB%BD/)
