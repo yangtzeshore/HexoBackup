@@ -102,7 +102,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git # 不要使用github
-  repo: git@github.com:yangtzeshore/yangtzeshore.github.io.git # 使用ssh连接
+  repo: https://github.com/yangtzeshore/yangtzeshore.github.io.git # 使用ssh连接
   branch: master # 默认master分支
   message: add new blog # 自动部署commit备注，可不填
   
@@ -112,4 +112,4 @@ backup:
   theme: fluid
   message: Back up my blog
   repository:
-    github: git@github.com:yangtzeshore/HexoBackup.git,backup
+    github: https://github.com/yangtzeshore/HexoBackup.git,backup
